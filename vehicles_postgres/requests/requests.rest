@@ -1,0 +1,46 @@
+
+@hostname = localhost
+@port = {{$dotenv PORT}}
+@host = {{hostname}}:{{port}}
+@vehicle_id = {{create_vehicle.response.body.data.id}}
+
+### Get all
+GET http://{{host}}/api/vehicles/
+
+### Create
+# @name create_vehicle
+POST http://{{host}}/api/vehicles/?user=7ec3dfed-b18a-48ff-969d-6f415fab8f9a
+Content-Type: application/json
+
+{
+  "type":"EV",
+  "make":"Mersu",
+  "model":"CLS",
+  "commissioned": true,
+  "license_plate": "AXZ-123"
+}
+
+### Get single
+GET http://{{host}}/api/vehicles/{{vehicle_id}}
+
+### Modify
+PUT http://{{host}}/api/vehicles/{{vehicle_id}}
+
+### Delete vehicle entry
+DELETE http://{{host}}/api/vehicles/{{vehicle_id}}
+
+
+#User requests
+
+### Get all users
+GET http://{{host}}/api/users/
+
+
+### Create user
+POST http://{{host}}/api/users/
+Content-Type: application/json
+
+{
+  "name":"Testaaja",
+  "username":"Testaaja"
+}
